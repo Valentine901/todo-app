@@ -1,0 +1,57 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    max-width: 1700px;
+padding: 2rem 8rem;
+}
+
+.card-body h5{
+    color: aquamarine;
+    font-size: 1.3rem;
+    font-family: sans-serif;
+}
+
+
+.card{
+background: #060acf;
+color:black;
+text-align: center;
+justify-content: center;
+display: block;
+width: 400px;
+max-width: 800px;
+padding-right: 1.5rem;
+}
+.cartoon{
+    display: block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+
+.inputext{
+    margin:1rem;
+    width: 100%;
+    height: 50px;
+    padding: 0.4rem;
+    align-items: center;
+}
+
+.btn-info{
+    margin:1rem;
+  
+    
+    padding: 0.4rem;
+    align-items: center;
+}
+
+/* sdgsddshdhddfhfhfdhfsfdjfd */
+
+body{
+    color: white;
+}
+
+

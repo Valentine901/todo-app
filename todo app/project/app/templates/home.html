@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+    .menu {
+
+        justify-content: center;
+        align-items: center;
+        display: block;
+        width: 100%;
+        background: #8bb9d4;
+        margin: 4rem 12rem;
+        height: 600px;
+        border-radius: 1rem;
+        max-width: 800px;
+        align-items: center;
+        overflow: hidden;
+        scroll-snap-type: mandatory;
+        scroll-behavior: smooth;
+        position: absolute;
+        z-index: 99;
+        scroll-behavior: smooth;
+        overflow-y: scroll;
+    }
+
+
+    nav {
+        background: #f20ca6;
+        color: hsl(350, 100%, 99%);
+        height: 80px;
+        z-index: 1000;
+    }
+
+    .logout {
+        /* float: right; */
+        padding: 1.3rem 2rem;
+        color: aliceblue;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .ul {
+        display: flex;
+        align-items: center;
+        padding: 10px 5px;
+        justify-content: space-between;
+        margin: auto 28px;
+
+    }
+
+    li {
+        list-style-type: none;
+
+    }
+
+    i {
+        font-size: 35px;
+        color: #fff;
+    }
+
+    .forms-control {
+        width: 100%;
+        height: 50px;
+        font-size: 18px;
+    }
+
+    .item_name {
+        color: black;
+        align-items: center;
+        width: 88%;
+        height: 40px;
+        max-height: 50px;
+        overflow-y: hidden;
+        background: white;
+        justify-content: center;
+        margin: 1rem 2rem;
+        padding: 0.5rem;
+        scroll-behavior: smooth;
+        scroll-snap-type: mandatory;
+    }
+</style>
+<!-- styling page -->
+
+
+
+<!-- Button trigger modal -->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{forms}}
+                    <div class="modal-footer">
+
+                        <button type="submit" class="btn btn-primary mt-4">Save changes</button>
+                    </div>
+                </form>
+                <br>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+
+<div class="menu">
+    <nav>
+
+        <div class="ul">
+            <h3>Hello {{user.username}}</h3>
+            <li><a href="{% url 'home' %}" title="home"><i class="fa-solid fa-house"></i></a></li>
+
+            <!-- Button trigger modal -->
+            <li>
+                <a href="" title="add task" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </li>
+    </nav>
+
+    <!-- main page -->
+
+    <div class="row">
+
+        <div class="col-md-8 ">
+            <div class="card" style="width: 33rem">
+                <div class="card-body ">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{forms}}
+
+                    </form>
+                </div>
+            </div>
+            {% for item in todos %}
+            <div style="display: flex;">
+                <p class="item_name"> {{item.name}} </p>
+
+
+                <a href="{% url 'delete' item.id %}" title="Delete">
+                    <i class="fa-solid fa-trash-can mt-4 pr-2" style="font-size: 16px;"></i></a>
+
+
+                <a href="{% url 'update' item.id %} " title="Edit"><i class="fa-solid fa-pen-to-square mt-4"
+                        style="font-size: 16px; margin-left: 0.8rem;"></i></a>
+
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+
+
+        <div class="col-md-1" style=" height: 100%;">
+            <div class="card" style="width: 246px; background:ghostwhite; height: 100%;">
+                <h5 style="color: black; text-decoration: underline; padding-top: 1rem;">List Of Task</h5>
+                <div class="card-body shadow" style="height: 100%;">
+                    {% for list in todos %}
+                    <p><b>Task</b>: {{list.name}} <br>
+                        <b>Date</b> :created {{list.created|timesince}} ago
+                    </p>
+                    <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- main page -->
+</div>
+
+
+
+
+
+
+
+
+
+{% endblock %}
